@@ -4,11 +4,11 @@
 FROM abiosoft/caddy:builder as builder
 
 ARG version="1.0.3"
-ARG plugins="git,cors,realip,expires,cache"
+ARG plugins="git,cors,realip,expires,cache,cloudflare"
 
 
 RUN go get -v github.com/abiosoft/parent
-RUN VERSION=${version} PLUGINS=${plugins} ENABLE_TELEMETRY=false /bin/sh /usr/bin/builder.sh
+RUN VERSION=${version} PLUGINS=${plugins} ENABLE_TELEMETRY=true /bin/sh /usr/bin/builder.sh
 
 #
 # Final stage
