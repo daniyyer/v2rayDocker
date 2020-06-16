@@ -6,7 +6,8 @@ FROM abiosoft/caddy:builder as builder
 ARG version="1.0.4"
 ARG plugins="git,cors,realip,expires,cache,cloudflare"
 
-
+# add this line before you run `/bin/sh /usr/bin/builder.sh`
+ADD https://raw.githubusercontent.com/jeffreystoke/caddy-docker/master/builder/builder.sh /usr/bin/builder.sh
 RUN go get -v github.com/abiosoft/parent
 RUN VERSION=${version} PLUGINS=${plugins} ENABLE_TELEMETRY=true /bin/sh /usr/bin/builder.sh
 
